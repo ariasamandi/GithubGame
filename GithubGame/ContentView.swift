@@ -23,7 +23,7 @@ struct ContentView: View {
                     .frame(width: 120, height: 120)
                     Text(user.login).bold().font(.title3)
                     if user.bio != ""{
-                        Text(user.bio).padding().padding(.bottom, 70)
+                        Text(user.bio ?? "").padding().padding(.bottom, 70)
                     }
                     
                 } else {
@@ -51,12 +51,17 @@ struct ContentView: View {
                 Spacer()
                 
                 Text("Want to play a game")
-                NavigationLink(destination: Game()) {
-                    Text("Yes").foregroundColor(.blue)
+                if (user == nil){
+                    Text("Yes").foregroundColor(.gray)
                 }
+                else{
+                    NavigationLink(destination: GameView()) {
+                        Text("Yes").foregroundColor(.blue)
+                    }
+                }
+               
             }
             .padding().padding()
-//            .navigationTitle("Main Screen")
         }
     }
     func getUser(username: String) {
@@ -64,7 +69,7 @@ struct ContentView: View {
             do {
                 // Fetch user data
                 user = try await getUserData(username: username)
-                print("name: \(user?.name ?? "nil")") // Print name after setting user
+//                print("name: \(user?.name ?? "nil")") // Print name after setting user
             } catch {
                 // Handle error
                 print("Error: \(error.localizedDescription)")
@@ -95,11 +100,11 @@ struct ContentView_Previews: PreviewProvider {
 struct githubUser: Codable {
     let login: String
     let avatar_url: String
-    let bio: String
-    let location: String
-    let followers: Int
-    let following: Int
-    let name: String
+    let bio: String?
+    let location: String?
+    let followers: Int?
+    let following: Int?
+    let name: String?
     
 }
 
