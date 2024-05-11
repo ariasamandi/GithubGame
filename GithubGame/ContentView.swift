@@ -1,17 +1,16 @@
 import SwiftUI
 
+
 struct ContentView: View {
-    @State private var user: githubUser? = nil
+    @State var userData: githubUser? // Use @StateObject for observable object
     @State private var username = ""
     
     var body: some View {
-        NavigationView{
-            
-            
+        NavigationView {
             VStack(spacing: 20) {
-                if let user = user {
+                if userData != nil {
                     // Display user data if available
-                    AsyncImage(url: URL(string: user.avatar_url)) { image in
+                    AsyncImage(url: URL(string: userData?.avatar_url ?? "default")) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -21,11 +20,10 @@ struct ContentView: View {
                             .foregroundColor(.secondary)
                     }
                     .frame(width: 120, height: 120)
-                    Text(user.login).bold().font(.title3)
-                    if user.bio != ""{
-                        Text(user.bio ?? "").padding().padding(.bottom, 70)
+                    Text(userData?.login ?? "default").bold().font(.title3)
+                    if let bio = userData?.bio {
+                        Text(bio).padding().padding(.bottom, 70)
                     }
-                    
                 } else {
                     // Show placeholder views when user data is not available
                     Circle()
@@ -41,7 +39,7 @@ struct ContentView: View {
                     .autocapitalization(.none)
                 
                 Button("Submit") {
-                    // Use the entered username (stored in `username` variable)
+                
                     print("Username: \(username)")
                     
                     // Call getUser to fetch user data
@@ -49,27 +47,35 @@ struct ContentView: View {
                 }
                 
                 Spacer()
+                if (userData == nil){
+                    Text("All Info").foregroundColor(.gray)
+                }
+                else{
+                    NavigationLink(destination: AllInfo(userData: userData!)) {
+                        Text("AllInfo").foregroundColor(.blue)
+                    }
+                }
                 
                 Text("Want to play a game")
-                if (user == nil){
+                if (userData == nil){
                     Text("Yes").foregroundColor(.gray)
                 }
                 else{
-                    NavigationLink(destination: GameView()) {
+                    NavigationLink(destination: GameView(userData: userData!)) {
                         Text("Yes").foregroundColor(.blue)
                     }
                 }
-               
             }
             .padding().padding()
         }
     }
+    
     func getUser(username: String) {
         Task {
             do {
                 // Fetch user data
-                user = try await getUserData(username: username)
-//                print("name: \(user?.name ?? "nil")") // Print name after setting user
+                let user = try await getUserData(username: username)
+                userData = user // Assign fetched user data to userData
             } catch {
                 // Handle error
                 print("Error: \(error.localizedDescription)")
@@ -105,7 +111,6 @@ struct githubUser: Codable {
     let followers: Int?
     let following: Int?
     let name: String?
-    
 }
 
 enum GHError: Error {
