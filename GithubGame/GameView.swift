@@ -53,7 +53,9 @@ struct GameView: View {
                 
             }
         }
-        .padding()
+        .padding().frame(maxWidth: .infinity, maxHeight: .infinity).background{
+            Color.green.opacity(0.2).ignoresSafeArea()
+        }
     }
 
     private func checkAnswer() {
@@ -112,6 +114,6 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(userData: githubUser(login: "example", avatar_url: "", bio: nil, location: nil, followers: nil, following: nil, name: nil))
+        GameView(userData: githubUser(login: "example", avatar_url: "", bio: nil, location: nil, followers: nil, following: nil, name: nil, followers_url: nil))
     }
 }

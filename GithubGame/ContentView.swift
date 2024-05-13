@@ -8,6 +8,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
+                
                 if userData != nil {
                     // Display user data if available
                     AsyncImage(url: URL(string: userData?.avatar_url ?? "default")) { image in
@@ -48,6 +49,14 @@ struct ContentView: View {
                 
                 Spacer()
                 if (userData == nil){
+                    Text("Followers").foregroundColor(.gray)
+                }
+                else{
+                    NavigationLink(destination: FollowersView(userData: userData!)) {
+                        Text("Followers").foregroundColor(.blue)
+                    }
+                }
+                if (userData == nil){
                     Text("All Info").foregroundColor(.gray)
                 }
                 else{
@@ -66,8 +75,12 @@ struct ContentView: View {
                     }
                 }
             }
-            .padding().padding()
+            .padding().padding().background{
+                Color.orange.opacity(0.3).ignoresSafeArea()
+            }
+            
         }
+        
     }
     
     func getUser(username: String) {
@@ -111,6 +124,7 @@ struct githubUser: Codable {
     let followers: Int?
     let following: Int?
     let name: String?
+    let followers_url: String?
 }
 
 enum GHError: Error {
