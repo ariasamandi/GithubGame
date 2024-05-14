@@ -45,38 +45,41 @@ struct ContentView: View {
                     
                     // Call getUser to fetch user data
                     getUser(username: username)
-                }
+                }.buttonStyle(.bordered)
                 
                 Spacer()
-                if (userData == nil){
-                    Text("Followers").foregroundColor(.gray)
-                }
-                else{
-                    NavigationLink(destination: FollowersView(userData: userData!)) {
-                        Text("Followers").foregroundColor(.blue)
+                HStack{
+                    if (userData == nil){
+                        Text("Followers").foregroundColor(.gray)
                     }
-                }
-                if (userData == nil){
-                    Text("All Info").foregroundColor(.gray)
-                }
-                else{
-                    NavigationLink(destination: AllInfo(userData: userData!)) {
-                        Text("AllInfo").foregroundColor(.blue)
+                    else{
+                        NavigationLink(destination: FollowersView(userData: userData!)) {
+                            Text("Followers").foregroundColor(.blue)
+                        }.buttonStyle(.bordered)
                     }
+                    if (userData == nil){
+                        Text("More Info").foregroundColor(.gray)
+                    }
+                    else{
+                        NavigationLink(destination: AllInfo(userData: userData!)) {
+                            Text("More Info").foregroundColor(.blue)
+                        }.buttonStyle(.bordered)
+                    }
+                    if (userData == nil){
+                        Text("Game").foregroundColor(.gray)
+                    }
+                    else{
+                        NavigationLink(destination: GameView(userData: userData!)) {
+                            Text("Game").foregroundColor(.blue)
+                        }.buttonStyle(.bordered)
+                    }
+                    
                 }
                 
-                Text("Want to play a game")
-                if (userData == nil){
-                    Text("Yes").foregroundColor(.gray)
-                }
-                else{
-                    NavigationLink(destination: GameView(userData: userData!)) {
-                        Text("Yes").foregroundColor(.blue)
-                    }
-                }
+               
             }
             .padding().padding().background{
-                Color.orange.opacity(0.3).ignoresSafeArea()
+                Color.purple.opacity(0.1).ignoresSafeArea()
             }
             
         }
@@ -125,6 +128,10 @@ struct githubUser: Codable {
     let following: Int?
     let name: String?
     let followers_url: String?
+    let public_repos: Int?
+    let public_gists: Int?
+    let created_at: String?
+    let updated_at: String?
 }
 
 enum GHError: Error {
