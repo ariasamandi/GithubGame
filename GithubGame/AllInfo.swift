@@ -18,7 +18,7 @@ struct AllInfo: View {
                     Text("Name: \(name)")
                 }
                 
-                Text("Username: \(userData.login)") // Access user data from UserData
+                Text("Username: \(userData.login)")
                 
                 if let location = userData.location {
                     Text("Location: \(location)")
@@ -62,6 +62,7 @@ struct AllInfo: View {
 
 struct AllInfo_Previews: PreviewProvider {
     static var previews: some View {
+        // pass default user in case of nil
         AllInfo(userData: githubUser(login: "example", avatar_url: "", bio: nil, location: nil, followers: nil, following: nil, name: nil, followers_url: nil, public_repos: 0, public_gists: 0, created_at: nil, updated_at: nil))
     }
 }

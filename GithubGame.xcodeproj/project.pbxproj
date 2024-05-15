@@ -13,7 +13,6 @@
 		31DB403D2BE8927C005EA71F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31DB403C2BE8927C005EA71F /* Preview Assets.xcassets */; };
 		31DB40442BEACE7D005EA71F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DB40432BEACE7D005EA71F /* GameView.swift */; };
 		31DB40462BEF217F005EA71F /* AllInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DB40452BEF217F005EA71F /* AllInfo.swift */; };
-		31DB40482BEF34D8005EA71F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DB40472BEF34D8005EA71F /* DashboardView.swift */; };
 		31DB404A2BF2A493005EA71F /* FollowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DB40492BF2A493005EA71F /* FollowersView.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +24,6 @@
 		31DB403C2BE8927C005EA71F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		31DB40432BEACE7D005EA71F /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		31DB40452BEF217F005EA71F /* AllInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllInfo.swift; sourceTree = "<group>"; };
-		31DB40472BEF34D8005EA71F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		31DB40492BF2A493005EA71F /* FollowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +60,6 @@
 				31DB40352BE8927A005EA71F /* GithubGameApp.swift */,
 				31DB40372BE8927A005EA71F /* ContentView.swift */,
 				31DB40492BF2A493005EA71F /* FollowersView.swift */,
-				31DB40472BEF34D8005EA71F /* DashboardView.swift */,
 				31DB40452BEF217F005EA71F /* AllInfo.swift */,
 				31DB40432BEACE7D005EA71F /* GameView.swift */,
 				31DB40392BE8927C005EA71F /* Assets.xcassets */,
@@ -151,7 +148,6 @@
 			files = (
 				31DB40382BE8927A005EA71F /* ContentView.swift in Sources */,
 				31DB40462BEF217F005EA71F /* AllInfo.swift in Sources */,
-				31DB40482BEF34D8005EA71F /* DashboardView.swift in Sources */,
 				31DB40442BEACE7D005EA71F /* GameView.swift in Sources */,
 				31DB404A2BF2A493005EA71F /* FollowersView.swift in Sources */,
 				31DB40362BE8927A005EA71F /* GithubGameApp.swift in Sources */,

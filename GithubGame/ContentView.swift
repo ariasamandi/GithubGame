@@ -1,8 +1,13 @@
+//ContentView
+
+// This is our starter page
+
 import SwiftUI
 
 
 struct ContentView: View {
-    @State var userData: githubUser? // Use @StateObject for observable object
+    
+    @State var userData: githubUser?
     @State private var username = ""
     
     var body: some View {
@@ -105,6 +110,8 @@ struct ContentView: View {
             throw GHError.invalidURL
         }
         let (data, response) = try await URLSession.shared.data(from: url)
+        
+        // Status code + error handeling
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw GHError.invalidResponse
         }

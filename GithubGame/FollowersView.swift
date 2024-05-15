@@ -1,3 +1,7 @@
+// FollowersView
+
+// Check our followers
+
 import SwiftUI
 
 struct FollowersView: View {
@@ -22,7 +26,6 @@ struct FollowersView: View {
                         }
                         .frame(width: 30, height: 30)
                         Text(follower.login)
-                        // Add any other follower information you want to display
 
                     }
                    
@@ -39,7 +42,7 @@ struct FollowersView: View {
         Task {
             do {
                 // Fetch follower data
-                let fetchedFollowers = try await getFollowerData(url: userData.followers_url ?? "https://api.github.com/users/ariasamandi/followers")
+                let fetchedFollowers = try await getFollowerData(url: userData.followers_url ?? "https://api.github.com/users/ariasamandi/followers") // if we have nil data we fetch Aria's followers
                 // Assign fetched follower data to the property
                 followers = fetchedFollowers
             } catch {
@@ -50,11 +53,16 @@ struct FollowersView: View {
     }
 
     func getFollowerData(url: String) async throws -> [Follower] {
+        
+        // converts string to url to prepare for network request
         guard let url = URL(string: url) else {
             throw GHError.invalidURL
         }
-
+        
+        // network request using url to fetch data
         let (data, _) = try await URLSession.shared.data(from: url)
+        
+        // converts network data into Follower struct
         let decoder = JSONDecoder()
         return try decoder.decode([Follower].self, from: data)
     }
