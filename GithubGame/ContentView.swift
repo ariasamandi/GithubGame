@@ -105,16 +105,21 @@ struct ContentView: View {
     }
     
     func getUserData(username: String) async throws -> githubUser {
+        // converts string into url
         let endpoint = "https://api.github.com/users/\(username)"
         guard let url = URL(string: endpoint) else {
             throw GHError.invalidURL
         }
+        
+        // network request for data
         let (data, response) = try await URLSession.shared.data(from: url)
         
         // Status code + error handeling
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw GHError.invalidResponse
         }
+        
+        //converts json data into githubUser
         let decoder = JSONDecoder()
         return try decoder.decode(githubUser.self, from: data)
     }

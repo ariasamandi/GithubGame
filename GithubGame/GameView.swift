@@ -23,8 +23,23 @@ struct GameView: View {
             // Game Over
             if count >= 4 {
                 Text("Game Over").padding().foregroundColor(.red)
-                Text("You Scored: \(correct)/\(count)").padding(.bottom, 20).foregroundColor(.green)
-                Text("Thats \((correct * 100 / count))%").padding(5)
+                if correct == 4{
+                    Text("You Scored: \(correct)/\(count)").padding(.bottom, 20).foregroundColor(.green)
+                    Text("Thats \((correct * 100 / count))%").padding(5).foregroundColor(.green)
+                }
+                else if correct == 3{
+                    Text("You Scored: \(correct)/\(count)").padding(.bottom, 20).foregroundColor(.yellow)
+                    Text("Thats \((correct * 100 / count))%").padding(5).foregroundColor(.yellow)
+                }
+                else if correct == 2 {
+                    Text("You Scored: \(correct)/\(count)").padding(.bottom, 20).foregroundColor(.orange)
+                    Text("Thats \((correct * 100 / count))%").padding(5).foregroundColor(.orange)
+                }
+                else{
+                    Text("You Scored: \(correct)/\(count)").padding(.bottom, 20).foregroundColor(.red)
+                    Text("Thats \((correct * 100 / count))%").padding(5).foregroundColor(.red)
+                }
+                
 
                 Text("Play Again?").padding(10)
                 Button("Yes") {
